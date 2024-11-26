@@ -1,8 +1,7 @@
-
 from abc import ABC, abstractmethod
 
 class DessertItem(ABC):
-    def __init__(self, name, tax_percent):
+    def __init__(self, name):
         self.name = name
         self.tax_percent = 7.25
     def __str__(self):
@@ -25,6 +24,8 @@ class Candy(DessertItem):
         return self.candy_weight
     def get_price_per_pound(self):
         return self.price_per_pound
+    def calculate_cost(self):
+        return self.candy_weight * self.price_per_pound
     
 class Cookie(DessertItem):
     def __init__(self, name, cookie_quantity, price_per_dozen):
@@ -35,6 +36,8 @@ class Cookie(DessertItem):
         return self.cookie_quantity
     def get_price_per_dozen(self):
         return self.price_per_dozen
+    def calculate_cost(self):
+        return self.cookie_quantity * (self.price_per_dozen/12)
     
 class IceCream(DessertItem):
     def __init__(self, name, scoop_count, price_per_scoop):
@@ -45,6 +48,8 @@ class IceCream(DessertItem):
         return self.scoop_count
     def get_price_per_scoop(self):
         return self. price_per_scoop
+    def calculate_cost(self):
+        return self.scoop_count * self.price_per_scoop
 
 class Sundae(IceCream):
     def __init__(self, name, scoop_count, price_per_scoop, topping_name, topping_price):
@@ -55,3 +60,5 @@ class Sundae(IceCream):
         return self.topping_name
     def get_topping_price(self):
         return self.topping_price
+    def calculate_cost(self):
+        return (self.scoop_count * self.price_per_scoop) + self.topping_price
