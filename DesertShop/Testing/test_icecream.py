@@ -12,3 +12,6 @@ def test_calculate_cost():
     ice_cream = IceCream("Vanilla", 2, 2.99)
     cost = ice_cream.get_scoop_count() * ice_cream.get_price_per_scoop()
     assert ice_cream.calculate_cost() == cost
+def test_packaging():
+    ice_cream = IceCream("Vanilla", 2, 2.99)
+    assert ice_cream.packaging == "Bowl"

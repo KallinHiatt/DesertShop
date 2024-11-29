@@ -15,3 +15,6 @@ def test_sundae_init():
 def test_calculate_cost():
     sundae = Sundae("Rocky Road", 2, 3.11, "Cherry", 1.00)
     cost = sundae.get_scoop_count()
+def test_packaging():
+    sundae = Sundae("Rocky Road", 2, 3.11, "Cherry", 1.00)
+    assert sundae.packaging == "Boat"

@@ -15,4 +15,7 @@ def test_calculate_cost():
     candy = Candy("Chocolate", 3.5, 1.5)
     cost = candy.get_candy_weight() * candy.get_price_per_pound()
     assert candy.calculate_cost() == cost
+def test_packaging():
+    candy = Candy("Chocolate", 3.5, 1.5)
+    assert candy.packaging == "Bag"
     

@@ -12,3 +12,6 @@ def test_calculate_cost():
     cookie = Cookie("Chocolate chip", 12, 15.60)
     cost = cookie.get_cookie_quantity() * (cookie.get_price_per_dozen()/12)
     assert cookie.calculate_cost() == cost
+def test_packaging():
+    cookie = Cookie("Chocolate chip", 12, 15.60)
+    assert cookie.packaging == "Box"
