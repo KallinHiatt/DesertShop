@@ -1,3 +1,4 @@
+
 from dessert import DessertItem, Candy, Cookie, IceCream, Sundae
 from receipt import make_receipt
 
@@ -18,6 +19,11 @@ class Order():
         for item in self.order:
             tax += item.calculate_cost() * (item.tax_percent/100)
         return tax
+    def __str__(self):
+        order_summary = []
+        for item in self.order:
+            order_summary.append(str(item))
+        return '; '.join(order_summary)
 
 class DessertShop():
     def user_prompt_candy(self):
@@ -134,7 +140,7 @@ class DessertShop():
                 continue
             if isinstance(scoop_price, float):
                 break
-            
+
         while True:
             topping_name = input("Topping name: ")
             if isinstance(topping_name, str):
@@ -217,6 +223,6 @@ def main(Order):
     data.append(["Total items in the order", "", str(order.__len__())])
     import receipt
     receipt.make_receipt(data, "receipt.pdf")
-    print(data)
+    print(order)
 
 main(Order)

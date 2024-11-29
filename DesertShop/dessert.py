@@ -1,3 +1,4 @@
+
 from abc import ABC, abstractmethod
 
 class DessertItem(ABC):
@@ -9,7 +10,7 @@ class DessertItem(ABC):
     def get_name(self):
         return self.name
     def calculate_tax(self):
-        return self.calculate_cost() * (self.tax_percent/100)
+        return round(self.calculate_cost() * (self.tax_percent/100), 2)
 
     @abstractmethod
     def calculate_cost(self):
@@ -25,7 +26,9 @@ class Candy(DessertItem):
     def get_price_per_pound(self):
         return self.price_per_pound
     def calculate_cost(self):
-        return self.candy_weight * self.price_per_pound
+        return round(self.candy_weight * self.price_per_pound, 2)
+    def __str__(self):
+        return f"{self.name}, {str(self.candy_weight)}lbs, ${str(self.price_per_pound)}/lbs, ${str(self.calculate_cost())}, ${str(self.calculate_tax())}"
     
 class Cookie(DessertItem):
     def __init__(self, name, cookie_quantity, price_per_dozen):
@@ -37,7 +40,9 @@ class Cookie(DessertItem):
     def get_price_per_dozen(self):
         return self.price_per_dozen
     def calculate_cost(self):
-        return self.cookie_quantity * (self.price_per_dozen/12)
+        return round(self.cookie_quantity * (self.price_per_dozen/12), 2)
+    def __str__(self):
+        return f"{self.name}, {str(self.cookie_quantity)} cookie(s), ${str(self.price_per_dozen)}/dozen, ${str(self.calculate_cost())}, ${str(self.calculate_tax())}"
     
 class IceCream(DessertItem):
     def __init__(self, name, scoop_count, price_per_scoop):
@@ -49,7 +54,9 @@ class IceCream(DessertItem):
     def get_price_per_scoop(self):
         return self. price_per_scoop
     def calculate_cost(self):
-        return self.scoop_count * self.price_per_scoop
+        return round(self.scoop_count * self.price_per_scoop, 2)
+    def __str__(self):
+        return f"{self.name}, {str(self.scoop_count)} scoop(s), ${str(self.price_per_scoop)}/scoop, ${str(self.calculate_cost())}, ${str(self.calculate_tax())}"
 
 class Sundae(IceCream):
     def __init__(self, name, scoop_count, price_per_scoop, topping_name, topping_price):
@@ -61,4 +68,7 @@ class Sundae(IceCream):
     def get_topping_price(self):
         return self.topping_price
     def calculate_cost(self):
-        return (self.scoop_count * self.price_per_scoop) + self.topping_price
+        return round((self.scoop_count * self.price_per_scoop) + self.topping_price, 2)
+    def __str__(self):
+        return f"{self.name}, {str(self.scoop_count)} scoop(s), ${str(self.price_per_scoop)}/scoop, {self.topping_name}, ${str(self.topping_price)}, ${str(self.calculate_cost())}, ${self.calculate_tax()}"
+
